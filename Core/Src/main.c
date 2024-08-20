@@ -38,11 +38,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define MAX_BLOCK_SIZE 		( 1024 )
 #define APP_START_ADD		0x08004400
-#define MAX_TRIGGER_TIME	100
-
-#define BUFFER_SIZE 		60
 
 /* USER CODE END PD */
 
@@ -57,10 +53,6 @@ UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 
-uint16_t data_block_idx = 0;
-uint16_t application_size = 0;
-uint8_t feedback_buffer[BUFFER_SIZE];
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -70,9 +62,6 @@ static void MX_USART1_UART_Init(void);
 static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
-//static uint8_t Transmission_Start(void);
-//static HAL_StatusTypeDef Flash_Data_Write(uint8_t* data_block, uint16_t data_len, uint8_t is_first_write);
-//static void Firmware_Update(void);
 static void Goto_Application(void);
 
 
