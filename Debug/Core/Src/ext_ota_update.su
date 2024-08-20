@@ -1,0 +1,5 @@
+../Core/Src/ext_ota_update.c:42:17:EXT_OTA_Receive_Chunk	24	static
+../Core/Src/ext_ota_update.c:130:19:EXT_OTA_Process_Data	48	static
+../Core/Src/ext_ota_update.c:242:13:EXT_OTA_Send_Resp	32	static
+../Core/Src/ext_ota_update.c:262:26:EXT_OTA_Flash_Data_Write	56	static
+../Core/Src/ext_ota_update.c:329:12:EXT_OTA_Update	16	static

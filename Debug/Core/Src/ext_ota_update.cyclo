@@ -1,0 +1,5 @@
+ext_ota_update.c:42:17:EXT_OTA_Receive_Chunk	12
+ext_ota_update.c:130:19:EXT_OTA_Process_Data	18
+ext_ota_update.c:242:13:EXT_OTA_Send_Resp	1
+ext_ota_update.c:262:26:EXT_OTA_Flash_Data_Write	8
+ext_ota_update.c:329:12:EXT_OTA_Update	4

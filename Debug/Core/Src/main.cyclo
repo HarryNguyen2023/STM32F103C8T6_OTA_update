@@ -1,0 +1,8 @@
+main.c:90:5:main	3
+main.c:155:6:SystemClock_Config	3
+main.c:195:13:MX_USART1_UART_Init	2
+main.c:228:13:MX_USART3_UART_Init	2
+main.c:261:13:MX_GPIO_Init	1
+main.c:290:5:__io_putchar	1
+main.c:301:13:Goto_Application	2
+main.c:334:6:Error_Handler	1
