@@ -38,7 +38,6 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define APP_START_ADD		0x08004400
 
 /* USER CODE END PD */
 
@@ -104,24 +103,53 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  printf("Starting bootloader version 0.2");
+  printf("Starting bootloader version 0.3");
   for(uint8_t i = 0; i < 30; ++i)
   {
 	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  HAL_Delay(100);
+	  HAL_Delay(50);
   }
 
-//  Firmware_Update();
-  if(EXT_OTA_Update() != EXT_OTA_EX_OK)
+  EXT_GNRL_CONFIG *cfg = (EXT_GNRL_CONFIG*)(EXT_CONFIG_FLASH_ADD);
+  static uint8_t ota_mode = 0;
+
+  switch(cfg->reboot_cause)
   {
+	  case EXT_NORMAL_BOOT:
+	  {
+		  printf("Normal boot\r\n");
+		  break;
+	  }
+
+	  case EXT_OTA_REQUEST:
+	  case EXT_FIRST_TIME_BOOT:
+	  {
+		  printf("First time boot/ OTA request ... \r\n");
+		  printf("Going to the OTA mode\r\n");
+		  ota_mode = 1;
+		  break;
+	  }
+	  case EXT_LOAD_PREV_APP:
+		  break;
+	  default:
+		  break;
+  }
+
+  if(ota_mode)
+  {
+	if(EXT_OTA_Update() != EXT_OTA_EX_OK)
+	{
 	  printf("Error: OTA update halted!\r\n");
 	  while(1);
-  }
-  else
-  {
+	}
+	else
+	{
 	  printf("Firmware update is done||| Rebooting...\r\n");
+	}
   }
-//
+  // Load new application if available
+  EXT_OTA_Load_New_App();
+  // Go to the new application in Flash memory
   Goto_Application();
 
   /* USER CODE END 2 */
@@ -290,7 +318,7 @@ int fputc(int ch, FILE* f)
 static void Goto_Application(void)
 {
 	printf("Jumping to the application!");
-	void (*AppReset_Handler)(void) = (void*)(*((volatile uint32_t*)(APP_START_ADD + 4U)));
+	void (*AppReset_Handler)(void) = (void*)(*((volatile uint32_t*)(EXT_APP_START_ADD + 4U)));
 	if(AppReset_Handler == (void*)0xFFFFFFFF)
 
 	{
@@ -303,7 +331,7 @@ static void Goto_Application(void)
 	// Turn off all the fault handler
 	SCB->SHCSR &= ~( SCB_SHCSR_USGFAULTENA_Msk | SCB_SHCSR_BUSFAULTENA_Msk | SCB_SHCSR_MEMFAULTENA_Msk ) ;
 	// Set main stack pointer
-	__set_MSP(*(volatile uint32_t*) APP_START_ADD);
+	__set_MSP(*(volatile uint32_t*) EXT_APP_START_ADD);
 	// Clear sysTick timer
 	SysTick->CTRL = 0;
 	SysTick->LOAD = 0;

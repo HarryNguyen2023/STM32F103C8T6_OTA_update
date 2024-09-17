@@ -1,5 +1,10 @@
-../Core/Src/ext_ota_update.c:42:17:EXT_OTA_Receive_Chunk	24	static
-../Core/Src/ext_ota_update.c:130:19:EXT_OTA_Process_Data	48	static
-../Core/Src/ext_ota_update.c:242:13:EXT_OTA_Send_Resp	32	static
-../Core/Src/ext_ota_update.c:262:26:EXT_OTA_Flash_Data_Write	56	static
-../Core/Src/ext_ota_update.c:329:12:EXT_OTA_Update	16	static
+../Core/Src/ext_ota_update.c:49:17:EXT_OTA_Receive_Chunk	40	static
+../Core/Src/ext_ota_update.c:148:19:EXT_OTA_Process_Data	120	static
+../Core/Src/ext_ota_update.c:322:13:EXT_OTA_Send_Resp	32	static
+../Core/Src/ext_ota_update.c:342:26:EXT_OTA_Slot_Data_Write	56	static
+../Core/Src/ext_ota_update.c:421:16:EXT_OTA_Get_Available_Slot_Number	80	static
+../Core/Src/ext_ota_update.c:448:26:EXT_OTA_App_Data_Write	56	static
+../Core/Src/ext_ota_update.c:507:26:EXT_OTA_Write_Config	64	static
+../Core/Src/ext_ota_update.c:574:12:EXT_OTA_Update	16	static
+../Core/Src/ext_ota_update.c:625:6:EXT_OTA_Load_New_App	96	static
+../Core/Src/ext_ota_update.c:709:10:CalcCRC	32	static
